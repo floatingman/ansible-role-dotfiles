@@ -44,7 +44,7 @@
 - name: Link dotfiles and exclude meta files
   command: rcup -d "{{ dotfiles_path }}" -f '{% for arg1 in excluded_files %}-x {{arg1 }}{% if not loop.last %}{% endif %} {% endfor %}' #-x README -x LICENSE -x screenshot.png
   args:
-    chdir: "{{ ansible_env.HOME }}/workspace/github.com/dnewman/public-dotfiles"
+    chdir: "{{ ansible_env.HOME }}/workspace/github.com/{{ github_user }}/public-dotfiles"
 
 - name: Create global gitconfig
   template:
