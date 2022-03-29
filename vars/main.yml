@@ -2,7 +2,7 @@
 # vars file for ansible-role-dotfiles
 github_user: floatingman
 dotfiles_repo_url: https://github.com/{{ github_user }}/dotfiles.git
-dotfiles_path: "{{ ansible_env.HOME }}/workspace/github.com/{{ github_user }}/public-dotfiles"
+dotfiles_path: "{{ ansible_env.HOME }}/.dotfiles"
 excluded_files:
   - README.md
   - LICENSE
