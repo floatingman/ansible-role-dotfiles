@@ -44,6 +44,14 @@
 - name: Link dotfiles and exclude meta files
   command: rcup -d "{{ dotfiles_path }}" -f '{% for arg1 in excluded_files %}-x {{arg1 }}{% if not loop.last %}{% endif %} {% endfor %}' #-x README -x LICENSE -x screenshot.png
 
+- name: check packages
+  package_facts:
+    manager: auto
+
+- name: Link gui related dotfiles if on linux and running a gui
+  command: rcup -d "{{ dotfiles_path }}" -t linux-gui -f '{% for arg1 in excluded_files %}-x {{arg1 }}{% if not loop.last %}{% endif %} {% endfor %}' #-x README -x LICENSE -x screenshot.png
+  when: "'thunar' in ansible_facts.packages"
+
 - name: Create global gitconfig
   template:
     src: templates/gitconfig.j2
